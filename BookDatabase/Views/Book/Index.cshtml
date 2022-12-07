@@ -1,0 +1,124 @@
+﻿@model List<BookModel>
+
+@{
+
+    ViewData["Title"] = "Book List";
+}
+
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a role="button" class="btn btn-primary" asp-controller="Book" asp-action="Create">Add new Book</a>
+    </div>
+
+    <br />
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <br />
+
+    <h1 class="display-4">Book List</h1>
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var book in Model)
+                    {
+
+                        <div class="col-md-4">
+                            <div class="card mb-lg-4 shadow-sm">
+                                <img class="img-thumbnail img-card" src="@book.Image" />
+                                <span id="span" class="badge @(book.Status == "Wish" ? "badge-primary" : (book.Status == "Lent" ? "badge-secondary" : (book.Status == "Have" ? "badge-success" : null)))">@book.Status</span>
+
+                                <div class="card-body">
+                                    <h3 class="card-text">@book.Title</h3>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="form-label label-primary">By: </span>
+                                            <span class="text-monospace">@book.Author</span>
+                                        </div>
+                                        <div>
+                                            <span class="form-label label-primary">Year: </span>
+                                            <span class="text-monospace">@book.Year</span>
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <div class="d-flex justify-content-between">
+                                        <div class="btn-group">
+                                            <a href="/book/details/@book.Id" class="btn btn-sm btn-outline-secondary">View Details</a>
+                                        </div>
+                                        <div class="d-flex">
+                                            <a role="button" class="btn btn-primary" asp-route-id="@book.Id" asp-controller="Book" asp-action="Edit">Edit</a>
+                                            <a role="button" class="btn btn-danger" asp-route-id="@book.Id" asp-controller="Book" asp-action="DeleteConfirmation">Delete</a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@* <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Image</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var book in Model)
+                    {
+                        <tr>
+                            <th scope="row">@book.Id</th>
+                            <td>@book.Title</td>
+                            <td>@book.Year</td>
+                            <td>@book.Author</td>
+                            <td>@book.Status</td>
+                            <td><img src="@book.Image" class="img-thumbnail" /></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a role="button" class="btn btn-primary" asp-route-id="@book.Id" asp-controller="Book" asp-action="Edit">Edit</a>
+                                    <a role="button" class="btn btn-danger" asp-route-id="@book.Id" asp-controller="Book" asp-action="DeleteConfirmation">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+*@
+

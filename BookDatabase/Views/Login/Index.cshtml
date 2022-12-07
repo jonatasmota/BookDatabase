@@ -1,0 +1,42 @@
+﻿@model LoginModel
+
+@{
+    Layout = "_LayoutHome";
+    ViewData["Title"] = "Login";
+}
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h1>Login Page</h1>
+
+<div class="container">
+    <form asp-controller="Login" asp-action="Login" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" asp-for="Username" class="form-control" id="username">
+            @Html.ValidationMessageFor(x => x.Username)
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" asp-for="Password" class="form-control" id="password">
+            @Html.ValidationMessageFor(x => x.Password)
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+﻿@model BookModel
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Book</h1>
+</div>
+
+<form asp-controller="Book" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" asp-for="Title" class="form-control" placeholder="Enter title">
+        @Html.ValidationMessageFor(x => x.Title)
+    </div>
+
+    <div class="form-group">
+        <label for="year" class="form-label">Year</label>
+        <input type="number" asp-for="Year" class="form-control" placeholder="Enter year">
+        @Html.ValidationMessageFor(x => x.Year)
+    </div>
+
+    <div class="form-group">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" asp-for="Author" class="form-control" placeholder="Enter author">
+        @Html.ValidationMessageFor(x => x.Author)
+    </div>
+
+    <div class="form-group">
+        <label for="status" class="form-label"></label>
+        <select asp-for="Status" class="form-control" required>
+            <option value="">Please set the status</option>
+            <option>Wish</option>
+            <option>Lent</option>
+            <option>Have</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Status)
+    </div>
+
+    <div class="form-group">
+        <label for="ImageFile" class="form-label">Status</label>
+        <div class="custom-file">
+            <input asp-for="BookImage" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Choose Image</label>
+        </div>
+        @Html.ValidationMessageFor(x => x.BookImage)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a class="btn btn-secondary" asp-controller="Book" asp-action="Index">Back</a>
+</form>
+
+

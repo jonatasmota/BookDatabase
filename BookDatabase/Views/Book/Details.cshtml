@@ -1,0 +1,56 @@
+﻿@model BookModel
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Book</h1>
+</div>
+
+<div class="container">
+    <h3 class="display-4">Book Details</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.Image" width="300" height="300" />
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Title</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="form-label label-primary">By: </span>
+                    <span class="text-monospace">@Model.Author</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="form-label label-primary">Year: </span>
+                    <span class="text-monospace">@Model.Year</span>
+                </div>
+            </div>
+
+            <hr />
+
+            <ul class="list-group">
+                <li class="list-group-item">Status: <span class="font-weight-bold">@Model.Status</span></li>
+            </ul>
+
+            <br />
+            <a class="btn btn-secondary" asp-controller="Book" asp-action="Index">Back</a>
+
+        </div>
+    </div>
+
+    
+</div>
+
+
+
+
+
