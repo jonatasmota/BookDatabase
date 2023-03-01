@@ -12,12 +12,6 @@ The application is a book database with the following features:
 
 Books are composed with the following properties:
 
-Title
-Year published
-Author
-
-
-You can see a video of the application working here:
-https://youtu.be/MwqN3bhVMPU
+Title, Year published, Author
 
 ![image](https://user-images.githubusercontent.com/59838730/222165466-d7cd44fc-cf74-474e-b6cb-e686cadc5ee6.png)
